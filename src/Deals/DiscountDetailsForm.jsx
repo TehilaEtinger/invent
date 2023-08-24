@@ -1,38 +1,41 @@
 import React, { useState } from 'react';
 import { TextField, Button, Paper, Box } from '@mui/material';
 
-const DiscountDetailsForm = ({ selectedTemplate, onSubmitDetails }) => {
+const DiscountDetailsForm = ({ selectedTemplate, handleSubmitDetails }) => {
+  
   const [discountDetails, setDiscountDetails] = useState({});
-
   
   return (
     <Paper elevation={2} style={{ padding: '16px' }}>
       {selectedTemplate === 'percentage' && (
         <TextField
-          label="Discount Percentage"
+          label="הנחה%"
           variant="outlined"
           fullWidth
+          required
           type='number'
-          value={discountDetails.discount}
+          
           onChange={(e)=>setDiscountDetails({...discountDetails,name:'percentage',p:(e.target.value)})}
         />
       )}
       {selectedTemplate === 'buy_get_free' && (
         <>
           <TextField
-            label="Buy Quantity"
+            label="קנה"
             variant="outlined"
             fullWidth
+            required
             type='number'
-            value={discountDetails.buyQuantity}
+            
             onChange={(e)=>setDiscountDetails({...discountDetails,name:'buy_get_free',buy:(e.target.value)})}
           />
           <TextField
-            label="Get Quantity Free"
+            label="קבל חינם"
             variant="outlined"
             fullWidth
+            required
             type='number'
-            value={discountDetails.getQuantity}
+            
             onChange={(e)=>setDiscountDetails({...discountDetails,name:'buy_get_free',get:(e.target.value)})}
 
           />
@@ -41,20 +44,20 @@ const DiscountDetailsForm = ({ selectedTemplate, onSubmitDetails }) => {
        {selectedTemplate === 'buy_pay_' && (
         <>
           <TextField
-            label="Buy Quantity"
+            label="קנה"
             variant="outlined"
             fullWidth
+            required
             type='number'
-            value={discountDetails.buyQuantity}
             onChange={(e)=>setDiscountDetails({...discountDetails,name:'buy_pay_',buy:(e.target.value)})}
 
           />
           <TextField
-            label="Pay "
+            label="שלם "
             variant="outlined"
             fullWidth
+            required
             type='number'
-            value={discountDetails.getQuantity}
             onChange={(e)=>setDiscountDetails({...discountDetails,name:'buy_pay_',pay:(e.target.value)})}
           />
         </>
@@ -62,27 +65,27 @@ const DiscountDetailsForm = ({ selectedTemplate, onSubmitDetails }) => {
        {selectedTemplate === 'the_in_%' && (
         <>
           <TextField
-            label="Buy Quantity"
+            label="קנה"
             variant="outlined"
             fullWidth
+            required
             type='number'
-            value={discountDetails.buyQuantity}
             onChange={(e)=>setDiscountDetails({...discountDetails,name:'the_in_%',buy:(e.target.value)})}
           />
           <TextField
-            label="Get % discount "
+            label="קבל % הנחה "
             variant="outlined"
             fullWidth
+            required
             min='0'
             type='number'
-            value={discountDetails.getQuantity}
             onChange={(e)=>setDiscountDetails({...discountDetails,name:'the_in_%',p:(e.target.value)})}
           />
         </>
       )}
       {/* Other template-specific input fields */}
       <Box mt={2}>
-        <Button variant="contained" color="primary" onClick={handleSubmitDetails}>
+        <Button variant="contained" color="primary" onClick={() => {sessionStorage.setItem('dealData', JSON.stringify(discountDetails));handleSubmitDetails}}>
           Continue
         </Button>
       </Box>

@@ -14,6 +14,7 @@ import Shapira from './ShapiraPage';
 import UserManagement from './UserManagementPage';
 import StatisticsPage from './StatisticsPage';
 import DealsPage from './DealsPage';
+import NotFound from './NotFound';
 
 function App({ userRole }) {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ function App({ userRole }) {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="*" element={<NotFound />} />
 
         {/* Authorized routes */}
         {checkAuthorization('admin') && (

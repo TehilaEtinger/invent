@@ -15,11 +15,13 @@ const PromotionsComponent = () => {
 
   const handleSelectTemplate = (template) => {
     setSelectedTemplate(template);
-    setDiscountDetails({});
+    
   };
 
-  const handleSubmitDetails = (details) => {
-    setDiscountDetails(details);
+  const handleSubmitDetails = () => {
+    const storedDiscountDetails = JSON.parse(sessionStorage.getItem('dealData'));
+    setDiscountDetails(storedDiscountDetails);
+    console.log('discountDetails',discountDetails)
   };
 
   const handleProductToggle = (productId) => {
@@ -34,7 +36,7 @@ const PromotionsComponent = () => {
     <div>
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <DiscountTemplates onSelectTemplate={handleSelectTemplate} />
+          <DiscountTemplates onSelectTemplate={handleSelectTemplate}  handleSubmitDetails={handleSubmitDetails}/>
         </Grid>
         <Grid item xs={4}>
           {selectedTemplate && (
