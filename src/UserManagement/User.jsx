@@ -27,7 +27,7 @@ const User = ({ user }) => {
   };
   const currentEmail=sessionStorage.getItem('userEmail'); 
   const handleRemoveUser = async () => {
-    const confirmation = window.confirm(`Are you sure you want to remove ${user.email}?`);
+    const confirmation = window.confirm(`האם אתה בטוח שאתה רוצה למחוק את המשתמש ${user.email}?`);
     if (confirmation) {
       try {
         await deleteDoc(doc(db, 'users', user.email));
