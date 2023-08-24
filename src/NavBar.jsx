@@ -5,7 +5,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Link } from 'react-router-dom';
 import Logut from './Logut';
 
-
 export default function NavBar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -17,44 +16,53 @@ export default function NavBar() {
     setIsDrawerOpen(false);
   };
 
+  const userRole = sessionStorage.getItem('userRole');
+
   const navigationLinks = [
-    { to: '/users', label: 'ניהול משתמשים' },
-    { to: '/PayToSupPage', label: 'שלם לספק' },
-    { to: '/update', label: 'עדכן מלאי' },
-    { to: '/view', label: 'טבלאות מידע' },
-    { to: '/updateprod', label: 'ערוך\\הוסף מוצר' },
-    { to: '/shapira', label: 'שפירא' },
-    { to: '/', label: 'ראשי' },
+    { to: '/', label: 'ראשי' }, // All users will see this link
+
+    // Add other links for admin users
+    ...(userRole === 'admin'
+      ? [
+          { to: '/statistics', label: 'סטטיסטיקות' },
+          { to: '/users', label: 'ניהול משתמשים' },
+          { to: '/PayToSupPage', label: 'שלם לספק' },
+          { to: '/update', label: 'עדכן מלאי' },
+          { to: '/view', label: 'טבלאות מידע' },
+          { to: '/updateprod', label: 'ערוך\\הוסף מוצר' },
+          { to: '/shapira', label: 'שפירא' },
+        ]
+      : []),
   ];
 
   return (
-   <>
-    <Link to="/" style={{ color: 'blue', position: 'absolute', top: '15px', left: '15px' }}>עונג שבת ליד המקווה</Link>
+    <>
+      <Link to="/" style={{ color: 'blue', position: 'absolute', top: '15px', left: '15px' }}>
+        עונג שבת ליד המקווה
+      </Link>
 
-    <Box position="absolute" top={15} right={15}>
-
-      <IconButton onClick={toggleDrawer} edge="start" color="inherit" aria-label="menu">
-        {isDrawerOpen ? <ChevronRightIcon /> : <MenuIcon />}
-      </IconButton>
-      <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
-        <List>
-          <ListItem>
-            <ListItemText primary="תפריט" />
-          </ListItem>
-          <Divider />
-          {navigationLinks.map((link, index) => (
-            <ListItem button key={index} component={Link} to={link.to} onClick={closeDrawer}>
-              <ListItemText primary={link.label} />
+      <Box position="absolute" top={15} right={15}>
+        <IconButton onClick={toggleDrawer} edge="start" color="inherit" aria-label="menu">
+          {isDrawerOpen ? <ChevronRightIcon /> : <MenuIcon />}
+        </IconButton>
+        <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
+          <List>
+            <ListItem>
+              <ListItemText primary="תפריט" />
             </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <Box p={2}>
-          <Logut />
-        </Box>
-      </Drawer>
-    </Box>
+            <Divider />
+            {navigationLinks.map((link, index) => (
+              <ListItem button key={index} component={Link} to={link.to} onClick={closeDrawer}>
+                <ListItemText primary={link.label} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <Box p={2}>
+            <Logut />
+          </Box>
+        </Drawer>
+      </Box>
     </>
-  
   );
 }

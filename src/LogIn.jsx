@@ -79,17 +79,17 @@ const LogIn = () => {
   };
 
   if (loading) {
-    return <div>בטעינה...</div>;
+    return <div style={{ textAlign: 'center' }}>בטעינה...</div>;
   }
 
   return (
-    <div>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       {user ? (
         <div>
-          <App userRole={userRole} />
+          <App userRole={userRole} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} />
         </div>
       ) : (
-        <div>
+        <div style={{ textAlign: 'center' }}>
           <h2>יש להתחבר כדי להכנס לאתר</h2>
           <button onClick={handleSignIn}>כניסה באמצעות חשבון גוגל</button>
         </div>

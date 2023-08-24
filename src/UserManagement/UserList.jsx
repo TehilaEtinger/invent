@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 
 const UserList = ({ userRole }) => {
   const [users, setUsers] = useState([]);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {

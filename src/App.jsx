@@ -12,6 +12,7 @@ import PayToSupPage from './PayToSupPage';
 import UpdatedProducts from './UpdateProductsPage';
 import Shapira from './ShapiraPage';
 import UserManagement from './UserManagementPage';
+import StatisticsPage from './StatisticsPage';
 
 function App({ userRole }) {
   const dispatch = useDispatch();
@@ -70,6 +71,8 @@ function App({ userRole }) {
             <Route path="/shapira" element={<Shapira />} />
             <Route path="/PayToSupPage" element={<PayToSupPage />} />
             <Route path="/users" element={<UserManagement />} />
+            <Route path="/statistics" element={<StatisticsPage />} />
+            
           </>
         )}
 

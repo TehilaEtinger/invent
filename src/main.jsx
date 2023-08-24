@@ -6,6 +6,9 @@ import { createStore } from 'redux'; // Changed from legacy_createStore to creat
 import { Provider } from 'react-redux';
 import reducer from './Reducer.jsx';
 import LogIn from './LogIn.jsx';
+import DealsPage from './DealsPage';
+
+
 
 const appStore = createStore(reducer); // Changed from legacy_createStore to createStore
 
@@ -14,7 +17,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={appStore}>
       
         <BrowserRouter>
-          <LogIn/>
+        <DealsPage/>
+          <LogIn />
         </BrowserRouter>
 
     </Provider>

@@ -17,13 +17,13 @@ export default function UserManagement() {
 
   return (
     <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-      }}
+    style={{
+      display: 'flex',
+      flexDirection: 'column', // Change to column
+      justifyContent: 'center',
+      alignItems: 'center',
+      
+    }}
     >
       <Fab
         color="primary"

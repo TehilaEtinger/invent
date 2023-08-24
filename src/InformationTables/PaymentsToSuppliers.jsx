@@ -4,6 +4,8 @@ import { collection, query, where, onSnapshot } from 'firebase/firestore';  // I
 import { Timestamp } from 'firebase/firestore';
 import db from '../firebase';
 import ExportExcel from './ExportExcel';
+import { sortArray, isValidDate, isEndDateValid, createTimestamp } from './tableUtils'; // Import the utility functions
+
 
 export default function PaymentsToSuppliersTable() {
   const [payments, setPayments] = useState([]);
@@ -19,21 +21,19 @@ export default function PaymentsToSuppliersTable() {
       const endDateObj = new Date(endDate);
 
       // Check for date errors
-      const isStartDateValid = startDateObj <= new Date();
-      const isEndDateValid = startDateObj <= endDateObj;
-
-      if (!isStartDateValid) {
-        setDateError('Start date cannot be a future date.');
+      if (!isValidDate(startDateObj)) {
+        setDateError('תאריך התחלה לא יכול להיות תאריך עתידי');
         return;
-      } else if (!isEndDateValid) {
-        setDateError('Start date must be before the end date.');
+      } else if (!isEndDateValid(startDateObj, endDateObj)) {
+        setDateError('תאריך התחלה צריך להיות לפני תאריך סיום');
         return;
       } else {
         setDateError('');
       }
 
-      const start = Timestamp.fromDate(startDateObj);
-      const end = Timestamp.fromMillis(endDateObj.getTime() + 86399999);
+      const start = createTimestamp(startDateObj);
+      const end = createTimestamp(new Date(endDateObj.getTime() + 86399999));
+
 
       let q = query(
         collection(db, 'supplierPayments'),

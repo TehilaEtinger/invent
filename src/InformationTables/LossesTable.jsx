@@ -26,10 +26,10 @@ export default function LossesTable() {
       const endDateObj = new Date(endDate);
 
       if (!isValidDate(startDateObj)) {
-        setDateError('Start date cannot be a future date.');
+        setDateError('תאריך התחלה לא יכול להיות תאריך עתידי');
         return;
       } else if (!isEndDateValid(startDateObj, endDateObj)) {
-        setDateError('Start date must be before the end date.');
+        setDateError('תאריך התחלה צריך להיות לפני תאריך סיום');
         return;
       } else {
         setDateError('');
@@ -143,7 +143,7 @@ export default function LossesTable() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={6}>Loading...</TableCell>
+                <TableCell colSpan={6}>מחפש...</TableCell>
               </TableRow>
             )}
           </TableBody>

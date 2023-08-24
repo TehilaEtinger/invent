@@ -18,19 +18,18 @@ export default function PurchasesTable() {
       const startDateObj = new Date(startDate);
       const endDateObj = new Date(endDate);
 
-      // Check for date errors
-      if (startDateObj > new Date()) {
-        setDateError('Start date cannot be a future date.');
+      if (!isValidDate(startDateObj)) {
+        setDateError('תאריך התחלה לא יכול להיות תאריך עתידי');
         return;
-      } else if (startDateObj > endDateObj) {
-        setDateError('Start date must be before the end date.');
+      } else if (!isEndDateValid(startDateObj, endDateObj)) {
+        setDateError('תאריך התחלה צריך להיות לפני תאריך סיום');
         return;
       } else {
         setDateError('');
       }
 
-      const start = Timestamp.fromDate(startDateObj);
-      const end = Timestamp.fromMillis(endDateObj.getTime() + 86399999);
+      const start = createTimestamp(startDateObj);
+      const end = createTimestamp(new Date(endDateObj.getTime() + 86399999));
 
       const q = query(collection(db, 'sold'), where('purchaseDate', '>=', start), where('purchaseDate', '<=', end));
 
