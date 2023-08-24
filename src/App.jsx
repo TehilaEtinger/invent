@@ -13,6 +13,7 @@ import UpdatedProducts from './UpdateProductsPage';
 import Shapira from './ShapiraPage';
 import UserManagement from './UserManagementPage';
 import StatisticsPage from './StatisticsPage';
+import DealsPage from './DealsPage';
 
 function App({ userRole }) {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ function App({ userRole }) {
 
 
   return (
-    <div>
+    <div >
       <NavBar />
 
       <Routes>
@@ -72,6 +73,8 @@ function App({ userRole }) {
             <Route path="/PayToSupPage" element={<PayToSupPage />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/statistics" element={<StatisticsPage />} />
+            <Route path="/deals" element={<DealsPage />} />
+            
             
           </>
         )}

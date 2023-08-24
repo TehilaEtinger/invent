@@ -31,6 +31,7 @@ export default function NavBar() {
           { to: '/view', label: 'טבלאות מידע' },
           { to: '/updateprod', label: 'ערוך\\הוסף מוצר' },
           { to: '/shapira', label: 'שפירא' },
+          { to: '/deals', label: 'מבצעים' },
         ]
       : []),
   ];

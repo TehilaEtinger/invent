@@ -83,10 +83,10 @@ const LogIn = () => {
   }
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center' ,width:'80vw' ,marginLeft:'10vw', marginRight:'10vw'}}>
       {user ? (
         <div>
-          <App userRole={userRole} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} />
+          <App userRole={userRole}  />
         </div>
       ) : (
         <div style={{ textAlign: 'center' }}>

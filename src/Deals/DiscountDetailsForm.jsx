@@ -3,18 +3,6 @@ import { TextField, Button, Paper, Box } from '@mui/material';
 
 const DiscountDetailsForm = ({ selectedTemplate, onSubmitDetails }) => {
   const [discountDetails, setDiscountDetails] = useState({});
-  
-
-  const handleDetailChange = (field) => (event) => {
-    setDiscountDetails((prevDetails) => ({
-      ...prevDetails,
-      [field]: event.target.value,
-    }));
-  };
-
-  const handleSubmitDetails = () => {
-    onSubmitDetails(discountDetails);
-  };
 
   
   return (

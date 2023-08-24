@@ -32,7 +32,6 @@ const PromotionsComponent = () => {
 
   return (
     <div>
-      <Typography variant="h4">Promotions</Typography>
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <DiscountTemplates onSelectTemplate={handleSelectTemplate} />
