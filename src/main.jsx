@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { createStore } from 'redux'; // Changed from legacy_createStore to createStore
 import { Provider } from 'react-redux';
 import reducer from './Reducer.jsx';
@@ -16,9 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={appStore}>
       
-        <BrowserRouter>
+        <HashRouter>
           <LogIn />
-        </BrowserRouter>
+        </HashRouter>
 
     </Provider>
   </React.StrictMode>

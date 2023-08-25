@@ -18,7 +18,7 @@ const UserList = ({ userRole }) => {
     };
 
     fetchUsers();
-  }, []);
+  }, [users]);
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' ,  gap: '10px' }}>
