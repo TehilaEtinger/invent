@@ -59,7 +59,7 @@ function App({ userRole }) {
     <div >
       <NavBar />
 
-      <Routes>
+      <Routes basename="/">
         <Route path="/" element={<HomePage />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="*" element={<NotFound />} />
