@@ -35,11 +35,14 @@ export default function ProductInStock({ product }) {
   };
 
   const handleConfirmationOk = async () => {
-   
-    if (operation === 'losses') {
-      const updatedQuantity = product.Quantity - quantityToAdd;
-  
-      if (updatedQuantity < 0) {
+    let updatedQuantity=product.Quantity
+    if (operation === 'losses'|| operation === 'reduce') {
+       updatedQuantity = product.Quantity - quantityToAdd;
+    }
+    if (operation === 'add') {
+       updatedQuantity = product.Quantity + quantityToAdd;
+    }
+    if (updatedQuantity < 0) {
         setInputError(true);
         return;
       }
@@ -49,7 +52,7 @@ export default function ProductInStock({ product }) {
       await updateDoc(productRef, { Quantity: updatedQuantity });
       // Dispatch an action to update the product quantity in the state
       dispatch({ type: 'UPDATE_PRODUCT_QUANTITY', payload: { id: product.id, quantity: updatedQuantity } });
-  
+      if (operation === 'losses') {
       // Calculate the debt to the supplier based on the quantity discarded and manufacturer's price
       const debtToSupplier = quantityToAdd * product.ManufacturerPrice;
   
