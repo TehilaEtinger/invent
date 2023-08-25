@@ -35,12 +35,12 @@ export default function ProductInStock({ product }) {
   };
 
   const handleConfirmationOk = async () => {
-    let updatedQuantity=product.Quantity
+    let updatedQuantity=parseInt(product.Quantity, 10)
     if (operation === 'losses'|| operation === 'reduce') {
-       updatedQuantity = product.Quantity - quantityToAdd;
+       updatedQuantity = parseInt(product.Quantity, 10) - parseInt(quantityToAdd, 10);
     }
     if (operation === 'add') {
-       updatedQuantity = product.Quantity + quantityToAdd;
+       updatedQuantity = parseInt(product.Quantity, 10) + parseInt(quantityToAdd, 10);
     }
     if (updatedQuantity < 0) {
         setInputError(true);
