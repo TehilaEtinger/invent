@@ -35,7 +35,7 @@ const PromotionsComponent = () => {
   return (
     <div>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={8}>
           <DiscountTemplates onSelectTemplate={handleSelectTemplate}  handleSubmitDetails={handleSubmitDetails}/>
         </Grid>
         <Grid item xs={4}>
