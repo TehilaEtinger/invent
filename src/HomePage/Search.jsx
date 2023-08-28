@@ -18,7 +18,7 @@ export default function Search({ onSearch }) {
   };
 
   return (
-    <div style={{ position: 'fixed', top: '80px', left: '10px', zIndex: '999' }}>
+    <div style={{ position: 'fixed', top: '40px', left: '10px', zIndex: '999' }}>
       <TextField
         type="search"
         placeholder="מחפש..."

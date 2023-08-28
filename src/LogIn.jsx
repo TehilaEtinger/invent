@@ -79,7 +79,7 @@ const LogIn = () => {
   };
 
   if (loading) {
-    return <div style={{ textAlign: 'center' }}>בטעינה...</div>;
+    return <div style={{ textAlign: 'center', width:'100vw' }}>בטעינה...</div>;
   }
 
   return (

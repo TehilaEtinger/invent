@@ -62,7 +62,7 @@ export default function HomePage() {
       </Box>
       <Box
         sx={{
-          width: '5%', // Adjust the width as desired
+          width: '8%', // Adjust the width as desired
           position: 'fixed',
           top: '80px', // Adjust the top position as needed
           bottom: '80px', // Adjust the bottom position as needed

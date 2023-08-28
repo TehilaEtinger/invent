@@ -8,8 +8,20 @@ import { Edit, Save, Cancel, Delete } from '@mui/icons-material';
 export default function ProductDetails({ product }) {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedProduct, setUpdatedProduct] = useState({ ...product });
-
+  const defaultProductValues = {
+    Name: '',
+    CustomerPrice: 0,
+    ManufacturerPrice: 0,
+    Manufacturer: '',
+    Picture: '',
+    Quantity: 0,
+    Category: '',
+    Returns: false,
+  };
+  const [updatedProduct, setUpdatedProduct] = useState({
+    ...defaultProductValues,
+    ...(product || {}), // Merge with product values if available
+  });
   const handleUpdateProduct = () => {
     // Dispatch an action to update the product in the state
     dispatch({ type: 'UPDATE_PRODUCT', payload: { id: product.id, data: updatedProduct } });

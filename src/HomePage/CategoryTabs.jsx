@@ -6,8 +6,8 @@ export default function CategoryTabs  ({ activeTab, handleTabChange, products })
   const categories = Array.from(new Set(products.map((product) => product.Category)));
 
   // Generate tabs for each category
-  const categoryTabs = ['הכל', ...categories].map((category) => (
-    <Tab key={category} value={category} label={category} />
+  const categoryTabs = ['הכל', ...categories].map((category,i) => (
+    <Tab key={i} value={category} label={category} />
   ));
 
   return (
@@ -17,7 +17,9 @@ export default function CategoryTabs  ({ activeTab, handleTabChange, products })
       orientation="vertical"
       variant="scrollable"
       scrollButtons="auto"
-      sx={{ justifyContent: 'center' }}
+      sx={{ justifyContent: 'center',
+      minWidth: 'fit-content', // Adjust this value
+      width: '100%' }}
     >
       {categoryTabs}
     </Tabs>
