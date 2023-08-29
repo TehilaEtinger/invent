@@ -51,7 +51,7 @@ export default function ProductInStock({ product }) {
       const productRef = doc(db, 'stock', product.id);
       await updateDoc(productRef, { Quantity: updatedQuantity });
       // Dispatch an action to update the product quantity in the state
-      dispatch({ type: 'UPDATE_PRODUCT_QUANTITY', payload: { id: product.id, quantity: updatedQuantity } });
+      dispatch({ type: 'UPDATE_QUANTITY', payload: { id: product.id, quantity: updatedQuantity } });
       if (operation === 'losses') {
       // Calculate the debt to the supplier based on the quantity discarded and manufacturer's price
       const debtToSupplier = quantityToAdd * product.ManufacturerPrice;

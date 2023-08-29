@@ -30,17 +30,27 @@ export default function reducer(state = { stock: [], sold: [], cart: [] }, actio
         cart: [],
       };
 
-      case 'UPDATE_QUANTITY':
-        const { id, quantity } = action.payload;
-        const updatedItems = state.cart.map((item) =>
-          item.id === id ? { ...item, quantity } : item
-        );
+      case 'UPDATE_CART_QUANTITY':
+      const { id: cartItemId, quantity: cartItemQuantity } = action.payload;
+      const updatedCartItems = state.cart.map(item =>
+        item.id === cartItemId ? { ...item, quantity: cartItemQuantity } : item
+      );
 
-        return {
-          ...state,
-          cart: updatedItems,
-        };
-      
+      return {
+        ...state,
+        cart: updatedCartItems,
+      };
+
+    case 'UPDATE_QUANTITY':
+      const { id: stockItemId, quantity: stockItemQuantity } = action.payload;
+      const updatedStockItems = state.stock.map(item =>
+        item.id === stockItemId ? { ...item, quantity: stockItemQuantity } : item
+      );
+
+      return {
+        ...state,
+        stock: updatedStockItems,
+      };
     case 'COMPLETE_PURCHASE':
       // Assuming action.payload contains the list of products sold and other relevant details
       // Update the sold table with the sold products

@@ -46,6 +46,8 @@ export default function Payment() {
           await updateDoc(productRef, {
             Quantity: updatedStockQuantity,
           });
+          dispatch({ type: 'UPDATE_QUANTITY', payload: { id: cartItem.id, quantity: updatedStockQuantity } });
+
           console.log(`Stock quantity for product ${cartItem.Name} updated successfully!`);
         } else {
           console.error(`Product with ID ${cartItem.id} not found in stock.`);

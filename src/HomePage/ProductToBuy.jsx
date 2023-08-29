@@ -45,7 +45,7 @@ export default function ProductToBuy(props) {
   };
 
   const handleUpdateCart = () => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id: props.product.id, quantity } });
+    dispatch({ type: 'UPDATE_CART_QUANTITY', payload: { id: props.product.id, quantity } });
     setIsQuantityChanged(false);
   };
 
