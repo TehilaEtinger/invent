@@ -12,6 +12,13 @@ export default function HomePage() {
   const [display, setDisplay] = useState(products);
   const [activeTab, setActiveTab] = useState('הכל'); // Initial active tab is 'All'
 
+  const sortProductsAlphabetically = (products) => {
+    // Sort products alphabetically by name
+    return [...products].sort((a, b) => {
+      return a.Name.localeCompare(b.Name);
+    });
+  };
+
   const totalPrice = cart.reduce(
     (totalPrice, cartItem) => totalPrice + cartItem.CustomerPrice * cartItem.quantity,
     0
@@ -23,8 +30,9 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    setDisplay(sortProductsAlphabetically(products));
     // Set the initial state of 'display' to products sorted by category
-    setDisplay(sortProductsByCategory(products));
+   // setDisplay(sortProductsByCategory(products));
   }, [products]);
 
   const handleTabChange = (event, newValue) => {
@@ -34,9 +42,10 @@ export default function HomePage() {
 
   const filterProductsByCategory = (category) => {
     if (category === 'הכל') {
-      setDisplay(sortProductsByCategory(products));
+      setDisplay(sortProductsAlphabetically(products));
     } else {
-      setDisplay(products.filter((product) => product.Category === category));
+      const filteredProducts = products.filter((product) => product.Category === category);
+      setDisplay(sortProductsAlphabetically(filteredProducts));
     }
   };
 
@@ -51,7 +60,7 @@ export default function HomePage() {
   };
 
   return (
-    <Box sx={{ padding: '10px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Box sx={{ padding: '10px', display: 'flex', flexDirection: 'row-reverse', justifyContent: 'space-between' }}>
       <Box sx={{ width: '100%', marginTop: 2 }}>
         <Search onSearch={handleSearch} />
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>

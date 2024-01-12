@@ -14,6 +14,20 @@ export default function reducer(state = { stock: [], sold: [], cart: [] }, actio
         ...state,
         cart: [...state.cart, action.payload],
       };
+
+      case 'ADD_PRODUCT':
+        return {
+          ...state,
+          stock: [...state.stock, { id: action.payload.id, ...action.payload.data }],
+        };
+
+        case 'DELETE_PRODUCT':
+          const productIdToDelete = action.payload;
+          return {
+            ...state,
+            stock: state.stock.filter(product => product.id !== productIdToDelete),
+          };
+    
        case 'REMOVE_FROM_CART':
       const productIdToRemove = action.payload;
       console.log({
@@ -51,6 +65,8 @@ export default function reducer(state = { stock: [], sold: [], cart: [] }, actio
         ...state,
         stock: updatedStockItems,
       };
+
+      
     case 'COMPLETE_PURCHASE':
       // Assuming action.payload contains the list of products sold and other relevant details
       // Update the sold table with the sold products

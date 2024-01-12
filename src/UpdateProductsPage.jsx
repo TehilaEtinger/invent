@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ProductDetails from './updateProducts/ProductDetails';
 import NewProduct from './updateProducts/NewProduct';
@@ -8,6 +8,13 @@ import { Add as AddIcon } from '@mui/icons-material';
 export default function UpdatedProducts() {
   const products = useSelector(state => state.stock);
   const [showAddProductModal, setShowAddProductModal] = useState(false);
+  const [display, setDisplay] = useState([]);
+  const sortProductsAlphabetically = (products) => {
+    // Sort products alphabetically by name
+    return [...products].sort((a, b) => {
+      return a.Name.localeCompare(b.Name);
+    });
+  };
 
   const handleAddProductClick = () => {
     setShowAddProductModal(true);
@@ -17,13 +24,17 @@ export default function UpdatedProducts() {
     setShowAddProductModal(false);
   };
 
+  useEffect(() => {
+    // Update the state with the sorted array
+    setDisplay(sortProductsAlphabetically(products));
+  }, [products]);
   return (
     <div>
       <br></br>
     
     <div style={styles.container}>
       
-      {products.map(product => (
+      {display.map(product => (
         <ProductDetails key={product.id} product={product} />
       ))}
       {/* Floating Action Button */}
