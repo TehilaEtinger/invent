@@ -12,6 +12,7 @@ export default function ProductInStock({ product }) {
   const [operation, setOperation] = useState('add');
   const [inputError, setInputError] = useState(false);
   
+  
  const cachedStock = useSelector(state => state.stock);
 
   // Find the current product in the cached stock data
