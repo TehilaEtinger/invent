@@ -40,4 +40,4 @@ if (app) {
   console.error("Firebase app not initialized, Firestore will not work.");
 }
 
-export default db; analytics;
+export { db, analytics };
